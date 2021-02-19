@@ -13,11 +13,8 @@ const App = () => {
   const [character, setCharacter] = useState([]);
 
   useEffect(() => {
-    axios.get('https://swapi.dev/api/people/')
-    .then(res => {
-      console.log(res.data)
-      setCharacter(res.data.character)
-    })
+    axios.get('https://swapi.dev/api/people/1')
+    .then(res => setCharacter(res.data))
     .catch(err => console.log(err));
   }, []);
   
@@ -27,7 +24,10 @@ const App = () => {
       <StyledApp>
       <h1 className="Header">Characters</h1>
       <p>
-        Character: {character}
+        Character: {character.name}
+      </p>
+      <p>
+      Year of Birth: {character.birth_year}
       </p>
       </StyledApp>
     </div>
@@ -36,6 +36,15 @@ const App = () => {
 
 const StyledApp = styled.div`
 
+p {
+  color: white;
+  display: inline-block;
+  justify-content: center;
+  padding: 10px;
+  font-size: 32;
+  font-weight: bold;
+  text-shadow: 2px 2px black;
+}
 
 `
 
